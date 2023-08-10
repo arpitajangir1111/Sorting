@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Array Asc or Desc</title>
+</head>
+<body>
+    <input type="text" placeholder="Enter a number">
+    <button id="add">Add To Array</button>
+    <select name="" id="order">
+        <option value="" selected disabled>Select Order</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+    </select>
+    <button id="show">Show</button>
+
+    <p id="output"></p>
+
+    <script>
+        const input = document.querySelector("input")
+        const add = document.querySelector("#add")
+        const order = document.querySelector("#order")
+        const show = document.querySelector("#show")
+        const numbers = []
+        add.onclick = () => {
+            if(input.value.length > 0){
+                numbers.push(Number(input.value))
+                document.querySelector("#output").innerHTML=numbers
+            }
+            input.value=""
+        }
+        show.onclick = () => {
+            if(order.value.length === 0)    alert("Select Order")
+            if(numbers.length === 0)    alert("Enter some numbers")
+            else    document.querySelector("#output").innerHTML = sortNumbers()
+        }
+
+        function sortNumbers(){
+            if(order.value === "asc"){
+                for(let i=0;i<numbers.length;i++){
+                    for(let j=i+1; j<numbers.length; j++){
+                        if(numbers[i] > numbers[j]){
+                            let temp = numbers[i]
+                            numbers[i] = numbers[j]
+                            numbers[j] = temp
+                        }
+                    }
+                }
+            }
+            else{
+                for(let i=0;i<numbers.length;i++){
+                    for(let j=i+1; j<numbers.length; j++){
+                        if(numbers[i] < numbers[j]){
+                            let temp = numbers[i]
+                            numbers[i] = numbers[j]
+                            numbers[j] = temp
+                        }
+                    }
+                }
+            }
+            return numbers
+        }
+    </script>
+</body>
+</html>
